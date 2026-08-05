@@ -3,125 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>When Time Chose Us - Syarifah & Ihsan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Undangan Pernikahan - Ifa & Ihsan</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="viewport">
-    <div class="scene" id="scene">
-        
-        <!-- BABAK 0: SAMPUL (Buku Tertutup di Tengah Hutan Daun) -->
-        <div class="layer" id="babak-sampul">
-            <div class="forest-canopy"></div>
-            <div class="fairy-book closed-book" id="bookCover">
-                <div class="book-cover-inner">
-                    <div class="leaf-ornament top-left">🌿</div>
-                    <div class="leaf-ornament bottom-right">🌿</div>
-                    <h3 class="sub-title">When Time Chose Us</h3>
-                    <h1 class="names">Syarifah & Ihsan</h1>
-                    <p class="tagline">"Kisah 3 tahun penolakan, jeda waktu, hingga takdir mempertemukan kembali."</p>
-                    <div class="date-badge">20 Desember 2026</div>
-                    <div id="guest-box" class="guest-box">Kepada Yth. Tamu Undangan</div>
-                    <div class="open-hint">Gulir perlahan untuk membuka buku ↓</div>
+    <!-- Audio Player (Tersembunyi) -->
+    <audio id="bgMusic" loop>
+        <source src="audio/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Tombol Audio Melayang -->
+    <button id="audio-control" onclick="toggleAudio()">🎵</button>
+
+    <!-- SAMPUL DEPAN (COVER) -->
+    <section id="cover" class="layer cover-bg">
+        <div class="cover-content story-card">
+            <h3 class="subtitle">When Time Chose Us</h3>
+            <h1 class="title">Syarifah &amp; Ihsan</h1>
+            <p>20 Desember 2026</p>
+            <p style="margin-top: 20px;">Kepada Yth. <br><strong>Tamu Undangan</strong></p>
+            <button class="btn-action" onclick="bukaUndangan()">Buka Lembaran Buku 📖</button>
+        </div>
+    </section>
+
+    <!-- ISI UNDANGAN (Disembunyikan sebelum tombol Buka diklik) -->
+    <div id="main-content" class="hidden">
+
+        <!-- BABAK 1: KAMPUS -->
+        <section class="layer chapter-bg bg-1">
+            <div class="char-boy boy-1"></div>
+            <div class="char-girl girl-1"></div>
+            <div class="story-card card-top">
+                <h2>Babak 1: Tiga Tahun di Kampus</h2>
+                <p>Sebuah ketulusan yang terus mencoba, meski harus menghadapi penolakan halus selama masa perkuliahan.</p>
+            </div>
+        </section>
+
+        <!-- BABAK 2: INDUSTRI -->
+        <section class="layer chapter-bg bg-2">
+            <div class="char-boy boy-2"></div>
+            <div class="char-girl girl-2"></div>
+            <div class="story-card card-top">
+                <h2>Babak 2: Mengembangkan Diri</h2>
+                <p>Jeda waktu memisahkan kita. Fokus mengejar karir di bidang masing-masing, membangun diri tanpa komunikasi.</p>
+            </div>
+        </section>
+
+        <!-- BABAK 3: TOKO GITAR -->
+        <section class="layer chapter-bg bg-3">
+            <div class="char-boy boy-3"></div>
+            <div class="char-girl girl-3"></div>
+            <div class="story-card card-top">
+                <h2>Babak 3: Sapaan Tak Terduga</h2>
+                <p>Langkah yang membawa kita ke toko gitar antik, menjadi awal pertemuan kembali yang mengejutkan dan manis.</p>
+            </div>
+        </section>
+
+        <!-- BABAK 4: ALAM -->
+        <section class="layer chapter-bg bg-4">
+            <div class="char-boy boy-4"></div>
+            <div class="char-girl girl-4"></div>
+            <div class="story-card card-top">
+                <h2>Babak 4: Petualangan Bersama</h2>
+                <p>Keindahan bukit dan air terjun menjadi saksi bagaimana kedekatan kita kembali terajut perlahan.</p>
+            </div>
+        </section>
+
+        <!-- BABAK 5: LAMARAN -->
+        <section class="layer chapter-bg bg-5">
+            <div class="char-boy boy-5"></div>
+            <div class="char-girl girl-5"></div>
+            <div class="story-card card-top">
+                <h2>Babak 5: Restu Semesta</h2>
+                <p>Di bawah cahaya hangat malam itu, sebuah ikrar suci diutarakan untuk melangkah ke pelaminan bersama.</p>
+            </div>
+        </section>
+
+        <!-- PENUTUP: DOA, MEMPELAI, ACARA (Latar Sunset Garden) -->
+        <section class="layer final-bg">
+            
+            <!-- Doa -->
+            <div class="story-card text-center margin-bottom">
+                <p><em>"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."</em><br><br><strong>(QS. Ar-Rum: 21)</strong></p>
+            </div>
+
+            <!-- Mempelai -->
+            <div class="char-couple couple-wedding"></div>
+            <div class="story-card text-center margin-bottom">
+                <h2 class="nama-mempelai">Syarifah Umaimah, S.T. (Ifa)</h2>
+                <p>Putri pertama dari<br>Bapak Mohamad Rusmin &amp; Ibu Yunisar Harahap</p>
+                <h2 class="nama-mempelai" style="margin-top: 15px;">&amp;</h2>
+                <h2 class="nama-mempelai">Ihsan Fauzi Noor, S.T. (Ihsan)</h2>
+                <p>Putra kedua dari<br>Bapak Budiono &amp; Ibu Komsiah</p>
+            </div>
+
+            <!-- Detail Acara & Countdown -->
+            <div class="story-card text-center margin-bottom">
+                <h2>Waktu Menuju Bahagia</h2>
+                <div id="countdown" class="countdown-box">
+                    <div><span id="hari">00</span> Hari</div>
+                    <div><span id="jam">00</span> Jam</div>
+                    <div><span id="menit">00</span> Menit</div>
+                    <div><span id="detik">00</span> Detik</div>
+                </div>
+
+                <h3 style="margin-top: 20px;">Minggu, 20 Desember 2026</h3>
+                <p><strong>Akad Nikah:</strong> 08.00 WIB<br><strong>Resepsi:</strong> 11.00 - 14.00 WIB</p>
+                
+                <h3 style="margin-top: 20px;">Lokasi Acara</h3>
+                <p><strong>Masjid Cibadak Daarul Matiin</strong><br>Kec. Cibadak, Kab. Sukabumi</p>
+                
+                <a href="https://maps.app.goo.gl/ZE22JnR6oJbwiCnZA" target="_blank" class="btn-action">📍 Buka Google Maps</a>
+                
+                <div style="margin-top: 15px;">
+                    <small>Scan QR Code Lokasi:</small><br>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maps.app.goo.gl/ZE22JnR6oJbwiCnZA" alt="QR Maps" class="qr-code">
                 </div>
             </div>
-        </div>
 
-        <!-- BABAK 1: TIGA TAHUN PENOLAKAN DI KAMPUS -->
-        <div class="layer" id="babak-1">
-            <div class="full-screen-stage">
-                <div class="cartoon-boy-left boy-babak1"></div>
-                <div class="cartoon-girl-right girl-babak1"></div>
-            </div>
-            
-            <div class="story-card card-top-left">
-                <div class="chapter-title">Tiga Tahun Penolakan</div>
-                <p class="short-story">Selama masa kuliah, sebuah ketulusan diuji oleh waktu. Tiga tahun lamanya usaha pendekatan terus diberikan, namun selalu berujung pada penolakan demi penolakan yang sabar diterima.</p>
-            </div>
-        </div>
-
-        <!-- BABAK 2: KEHENINGAN DAN JARAK (TEKNIK KIMIA & INDUSTRI) -->
-        <div class="layer" id="babak-2">
-            <div class="full-screen-stage">
-                <div class="cartoon-boy-left boy-babak2"></div>
-                <div class="cartoon-girl-right girl-babak2"></div>
+            <!-- Tanda Kasih -->
+            <div class="story-card text-center margin-bottom">
+                <h2>Tanda Kasih</h2>
+                <p>Bagi yang ingin memberikan tanda kasih, dapat melalui:</p>
+                <div class="bank-box">
+                    <strong>Bank Mandiri</strong><br>
+                    <span id="norek">1760002827994</span><br>
+                    a.n. Ihsan Fauzi Noor<br>
+                    <button class="btn-action small" onclick="salinRekening()">📋 Salin Rekening</button>
+                </div>
+                <div class="bank-box" style="margin-top:15px;">
+                    <strong>Alamat Kirim KadoFisik</strong><br>
+                    <p style="font-size: 0.9em;">4Q7G+HHQ, Cibadak, Kec. Cibadak, Kab. Sukabumi, Jawa Barat 43351</p>
+                    <a href="https://maps.app.goo.gl/QKBMKZReS21ZSrjD7" target="_blank" class="btn-action small">📍 Buka Maps Alamat Kado</a>
+                </div>
             </div>
 
-            <div class="story-card card-bottom-right">
-                <div class="chapter-title">Jeda Tanpa Kabar</div>
-                <p class="short-story">Lulus kuliah memutus segala komunikasi. Masing-masing melangkah dalam kesunyian, Ihsan mendalami Teknik Kimia dan Syarifah menempuh jalannya di Teknik Industri tanpa saling tahu kabar.</p>
-            </div>
-        </div>
-
-        <!-- BABAK 3: PERTEMUAN KEMBALI & TOKO GITAR -->
-        <div class="layer" id="babak-3">
-            <div class="full-screen-stage">
-                <div class="cartoon-boy-left boy-babak3"></div>
-                <div class="cartoon-girl-right girl-babak3"></div>
+            <!-- Penutup -->
+            <div class="story-card text-center margin-bottom">
+                <p>Kehadiran dan doa restu Bapak/Ibu/Saudara/i merupakan kehormatan dan kebahagiaan bagi kami.</p>
+                <h2>Terima Kasih</h2>
+                <p>Wassalamu’alaikum Warahmatullahi Wabarakatuh.</p>
+                <p><strong>- Ifa &amp; Ihsan -</strong></p>
             </div>
 
-            <div class="story-card card-top-center">
-                <div class="chapter-title">Sapaan di Toko Gitar</div>
-                <p class="short-story">Waktu berjalan dan membawa babak baru. Setelah sama-sama bekerja, takdir ajaib mempertemukan kita kembali, berawal dari langkah ringan menuju sebuah toko gitar.</p>
-            </div>
-        </div>
-
-        <!-- BABAK 4: PETUALANGAN KE AIR TERJUN DAN BUKIT -->
-        <div class="layer" id="babak-4">
-            <div class="full-screen-stage">
-                <div class="cartoon-couple-meet hiking-anim"></div>
-            </div>
-
-            <div class="story-card card-bottom-center">
-                <div class="chapter-title">Gemercik Air Terjun & Bukit</div>
-                <p class="short-story">Kedekatan itu kembali terajut erat di alam terbuka. Menikmati kesejukan air terjun hingga menapaki indahnya pemandangan di atas bukit bersama.</p>
-            </div>
-        </div>
-
-        <!-- BABAK 5: KOTAK CINCIN & LAMARAN -->
-        <div class="layer" id="babak-5">
-            <div class="full-screen-stage">
-                <div class="cartoon-couple-meet ring-anim"></div>
-            </div>
-
-            <div class="story-card card-top-center">
-                <div class="chapter-title">Ikrar di Bawah Restu Semesta</div>
-                <p class="short-story">Menyatukan seluruh keyakinan setelah perjalanan panjang yang berliku. Dengan membuka kotak cincin ini, niat suci untuk meminangmu resmi diutarakan.</p>
-            </div>
-        </div>
-
-        <!-- BABAK 6: RSVP / PENUTUP -->
-        <div class="layer" id="babak-6">
-            <div class="story-card card-center rsvp-card">
-                <div class="leaf-ornament top-left">🌿</div>
-                <div class="leaf-ornament bottom-right">🌿</div>
-                <div class="chapter-title">Lembaran Baru Kita</div>
-                <h1 class="names" style="font-size: 24px;">Syarifah & Ihsan</h1>
-                <p class="short-story">Dengan memohon rahmat Allah SWT, kami menantikan kehadiran Anda pada hari bahagia kami.</p>
-                <div class="date-badge">Minggu, 20 Desember 2026</div>
-                <p class="short-story location-text">Gedung Resepsi Pernikahan<br>Pukul 09.00 WIB - Selesai</p>
-                <button class="btn-action" onclick="alert('Terima kasih atas konfirmasi dan doa restunya!')">Konfirmasi Kehadiran</button>
-            </div>
-        </div>
-
+        </section>
     </div>
-</div>
 
-<!-- Wadah Efek Jejak Cahaya Kursor -->
-<div id="sparkle-container"></div>
-
-<!-- Pemutar Musik -->
-<div class="music-controller" id="musicBtn" onclick="toggleMusic()">
-    <span class="music-icon" id="musicIcon">🎵</span>
-    <span class="music-text" id="musicText">Putar Musik</span>
-</div>
-
-<audio id="bgMusic" loop>
-    <source src="audio/background-music.mp3" type="audio/mpeg">
-</audio>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

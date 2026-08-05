@@ -1,73 +1,63 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const scene = document.getElementById("scene");
-    const bookCover = document.getElementById("bookCover");
-    const totalHeight = document.body.offsetHeight - window.innerHeight;
-
-    window.addEventListener("scroll", function () {
-        const scrollTop = window.pageYOffset;
-        const scrollProgress = scrollTop / totalHeight;
-        const zTranslate = scrollProgress * -9000;
-        
-        scene.style.transform = `translateZ(${zTranslate}px)`;
-
-        if (scrollTop > 50) {
-            bookCover.classList.add("open-animation");
-        } else {
-            bookCover.classList.remove("open-animation");
-        }
-    });
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const guestName = urlParams.get("to");
+// FITUR 1: BUKA BUKU & MAINKAN MUSIK
+function bukaUndangan() {
+    // Sembunyikan Cover
+    document.getElementById('cover').classList.add('hidden');
+    // Tampilkan Isi
+    document.getElementById('main-content').classList.remove('hidden');
     
-    const guestBox = document.getElementById("guest-box");
-    if (guestName && guestBox) {
-        guestBox.innerHTML = `Kepada Yth.<br><strong>${decodeURIComponent(guestName)}</strong>`;
-    }
-});
-
-const bgMusic = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
-const musicIcon = document.getElementById("musicIcon");
-const musicText = document.getElementById("musicText");
-let isPlaying = false;
-
-function toggleMusic() {
-    if (isPlaying) {
-        bgMusic.pause();
-        musicIcon.textContent = "▶️";
-        musicText.textContent = "Putar Musik";
-    } else {
-        bgMusic.play().then(() => {
-            musicIcon.textContent = "🎵";
-            musicText.textContent = "Musik Diputar";
-        }).catch(error => {
-            console.log("Autoplay dicegah browser:", error);
-        });
-    }
-    isPlaying = !isPlaying;
+    // Mainkan Audio
+    var audio = document.getElementById("bgMusic");
+    audio.play();
+    
+    // Scroll otomatis ke atas
+    window.scrollTo(0, 0);
 }
 
-document.addEventListener("mousemove", function (e) {
-    if (Math.random() > 0.3) return;
+// FITUR 2: KONTROL AUDIO (ON/OFF)
+function toggleAudio() {
+    var audio = document.getElementById("bgMusic");
+    var btn = document.getElementById("audio-control");
+    
+    if (audio.paused) {
+        audio.play();
+        btn.innerHTML = "🎵";
+    } else {
+        audio.pause();
+        btn.innerHTML = "🔇";
+    }
+}
 
-    const sparkleContainer = document.getElementById("sparkle-container");
-    if (!sparkleContainer) return;
+// FITUR 3: SALIN NOMOR REKENING
+function salinRekening() {
+    var norek = document.getElementById("norek").innerText;
+    navigator.clipboard.writeText(norek).then(function() {
+        alert("Nomor Rekening Mandiri berhasil disalin: " + norek);
+    });
+}
 
-    const sparkle = document.createElement("div");
-    sparkle.classList.add("sparkle");
+// FITUR 4: COUNTDOWN (HITUNG MUNDUR)
+// Tanggal Tujuan: 20 Desember 2026, 08:00:00 WIB
+var countDownDate = new Date("Dec 20, 2026 08:00:00").getTime();
 
-    sparkle.style.left = `${e.clientX}px`;
-    sparkle.style.top = `${e.clientY}px`;
+var x = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
 
-    const randX = (Math.random() - 0.5) * 60 + "px";
-    const randY = (Math.random() - 0.5) * 60 + "px";
-    sparkle.style.setProperty("--rand-x", randX);
-    sparkle.style.setProperty("--rand-y", randY);
+    // Hitung Hari, Jam, Menit, Detik
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    sparkleContainer.appendChild(sparkle);
+    // Tampilkan ke dalam HTML
+    document.getElementById("hari").innerHTML = days < 10 ? "0" + days : days;
+    document.getElementById("jam").innerHTML = hours < 10 ? "0" + hours : hours;
+    document.getElementById("menit").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+    document.getElementById("detik").innerHTML = seconds < 10 ? "0" + seconds : seconds;
 
-    setTimeout(() => {
-        sparkle.remove();
-    }, 800);
-});
+    // Jika waktu habis
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "<b>Acara Sedang Berlangsung / Telah Selesai. Terima kasih atas doa restunya.</b>";
+    }
+}, 1000);

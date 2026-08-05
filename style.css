@@ -1,177 +1,179 @@
-:root {
-    --rose-gold: #b76e79;
-    --rose-gold-light: #fdf5f6;
-    --rose-gold-dark: #8c4a54;
-    --text-color: #4a4a4a;
-    --forest-green: #2c4a3e;
+/* RESET & DASAR */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    margin: 0; padding: 0;
-    height: 850vh; /* Diperpanjang untuk 6 babak */
-    background: #152922;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Georgia', serif; /* Font klasik dongeng */
+    background-color: #fdfaf6;
+    color: #4a3b32;
     overflow-x: hidden;
-    color: var(--text-color);
 }
 
-.viewport {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    perspective: 1200px; overflow: hidden;
+.hidden {
+    display: none !important;
 }
 
-.scene {
-    width: 100%; height: 100%; position: absolute;
-    transform-style: preserve-3d; transition: transform 0.1s linear;
+/* TOMBOL AUDIO */
+#audio-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #b76e79;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
+/* PENGATURAN LAYAR & LATAR BELAKANG */
 .layer {
-    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-attachment: fixed; /* Efek Parallax Halus */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px 20px;
 }
 
-/* =======================================
-   SAMPUL & BACKGROUND TIAP BABAK
-======================================== */
-#babak-sampul { transform: translateZ(0px); background-image: url('images/forest-bg.jpg'); }
-#babak-1 { transform: translateZ(-1500px); background-image: url('images/bg-kampus.jpg'); }
-#babak-2 { transform: translateZ(-3000px); background-image: url('images/bg-lorong.jpg'); }
-#babak-3 { transform: translateZ(-4500px); background-image: url('images/bg-gitar.jpg'); }
-#babak-4 { transform: translateZ(-6000px); background-image: url('images/bg-alam.jpg'); }
-#babak-5 { transform: translateZ(-7500px); background-image: url('images/bg-lamaran.jpg'); }
-#babak-6 { transform: translateZ(-9000px); background: radial-gradient(circle at center, #ffffff, #fdf1f3); }
-
-.forest-canopy {
-    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background-image: radial-gradient(circle, rgba(183, 110, 121, 0.15) 10%, transparent 20%);
-    background-size: 40px 40px; opacity: 0.6; pointer-events: none;
+/* DAFTAR GAMBAR LATAR BELAKANG */
+.cover-bg { background-image: url('images/bg-0-cover.png'); justify-content: center; }
+.bg-1 { background-image: url('images/bg-1-kampus.png'); }
+.bg-2 { background-image: url('images/bg-2-industri.png'); }
+.bg-3 { background-image: url('images/bg-3-gitar.png'); }
+.bg-4 { background-image: url('images/bg-4-alam.png'); }
+.bg-5 { background-image: url('images/bg-5-lamaran.png'); }
+.final-bg { 
+    background-image: url('images/bg-6-penutup.png'); 
+    background-attachment: scroll; /* Agar scroll lancar di halaman panjang */
+    display: block; 
+    padding-top: 50px;
 }
 
-.fairy-book {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    width: 90%; max-width: 480px;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(15px);
-    border-radius: 15px; border: 3px solid var(--rose-gold);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(183, 110, 121, 0.2);
-    z-index: 10; transition: transform 0.6s ease, opacity 0.6s ease;
-}
-
-.book-cover-inner { padding: 35px 30px; text-align: center; }
-.fairy-book.open-animation { transform: translate(-50%, -150%) scale(0.5); opacity: 0; pointer-events: none; }
-
-/* =======================================
-   POSISI KARAKTER TERPISAH DI BABAK AWAL
-======================================== */
-.full-screen-stage {
-    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    width: 100%; height: 100%; z-index: 1; pointer-events: none;
-}
-
-.cartoon-boy-left, .cartoon-girl-right {
-    width: 42vh; height: 42vh; max-width: 320px; max-height: 320px;
-    position: absolute; bottom: 8%;
-    background-size: contain; background-repeat: no-repeat; background-position: center;
-    mix-blend-mode: multiply; opacity: 0.95;
-}
-
-.cartoon-boy-left { left: 8%; animation: floatBoy 4s infinite ease-in-out; }
-.cartoon-girl-right { right: 8%; animation: floatGirl 4.5s infinite ease-in-out; }
-
-@keyframes floatBoy {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-}
-@keyframes floatGirl {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
-/* Karakter Berpasangan di Tengah (Babak 4 & 5) */
-.cartoon-couple-meet {
-    width: 55vh; height: 55vh; max-width: 450px; max-height: 450px;
-    position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%);
-    background-size: contain; background-repeat: no-repeat; background-position: center;
-    mix-blend-mode: multiply; opacity: 0.95;
-}
-.hiking-anim { animation: floatSlow 3s infinite ease-in-out; }
-.ring-anim { animation: pulseHeart 2.5s infinite ease-in-out; }
-
-@keyframes floatSlow {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-15px); }
-}
-@keyframes pulseHeart {
-    0%, 100% { transform: translateX(-50%) scale(1); }
-    50% { transform: translateX(-50%) scale(1.04); }
-}
-
-/* =======================================
-   KARTU CERITA & ELEMEN LAINNYA
-======================================== */
+/* DESAIN KARTU BUKU DONGENG (Story Card) */
 .story-card {
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(12px);
-    padding: 28px 22px; border-radius: 20px;
-    border: 1px solid rgba(183, 110, 121, 0.2);
-    box-shadow: 0 15px 35px rgba(183, 110, 121, 0.15);
-    max-width: 380px; width: 85%; position: absolute; z-index: 10; text-align: center;
+    background: rgba(255, 253, 250, 0.92);
+    border: 2px solid #b76e79; /* Rose Gold */
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 15px rgba(183, 110, 121, 0.3);
+    padding: 25px;
+    max-width: 500px;
+    margin: 0 auto;
+    backdrop-filter: blur(5px);
+    text-align: center;
+    position: relative;
+    z-index: 10;
 }
 
-.card-center { top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 450px; }
-.card-top-left { top: 12%; left: 8%; }
-.card-bottom-right { bottom: 12%; right: 8%; }
-.card-bottom-center { bottom: 8%; left: 50%; transform: translateX(-50%); }
-.card-top-center { top: 8%; left: 50%; transform: translateX(-50%); }
+.card-top { margin-top: 20px; }
+.margin-bottom { margin-bottom: 40px; }
+.text-center { text-align: center; }
 
-@media (max-width: 768px) {
-    .card-top-left, .card-bottom-right { left: 50%; right: auto; transform: translateX(-50%); }
-    .cartoon-boy-left { left: 2%; width: 35vh; height: 35vh; }
-    .cartoon-girl-right { right: 2%; width: 35vh; height: 35vh; }
+/* TIPOGRAFI */
+.title { font-size: 2.5em; color: #b76e79; margin: 10px 0; }
+.subtitle { font-size: 1.2em; color: #7a5c53; }
+.nama-mempelai { color: #b76e79; font-size: 1.8em; margin-bottom: 5px; }
+h2 { color: #b76e79; margin-bottom: 10px; font-size: 1.5em; }
+p { line-height: 1.6; font-size: 1em; }
+
+/* TOMBOL */
+.btn-action {
+    background-color: #b76e79;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 20px;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(183, 110, 121, 0.4);
+}
+.btn-action.small { padding: 8px 15px; font-size: 0.9em; }
+
+/* KARAKTER (MENGHAPUS BACKGROUND PUTIH DENGAN MULTIPLY) */
+.char-boy, .char-girl, .char-couple {
+    position: absolute;
+    bottom: 5%; /* Pijakan karakter */
+    width: 45%; 
+    max-width: 200px;
+    height: 350px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    z-index: 5;
+    mix-blend-mode: multiply; /* KUNCI PENGHAPUS BG PUTIH */
+    filter: contrast(105%);
 }
 
-.leaf-ornament { position: absolute; font-size: 24px; opacity: 0.6; }
-.top-left { top: 15px; left: 15px; transform: rotate(-45deg); }
-.bottom-right { bottom: 15px; right: 15px; transform: rotate(135deg); }
-.sub-title { font-family: 'Playfair Display', serif; font-style: italic; color: var(--rose-gold); font-size: 18px; margin-bottom: 5px; }
-.names { font-family: 'Playfair Display', serif; color: var(--rose-gold-dark); font-size: 32px; margin: 5px 0 12px 0; font-weight: 600; }
-.tagline { font-size: 13px; font-style: italic; color: #777; margin-bottom: 18px; line-height: 1.5; }
-.chapter-title { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--rose-gold-dark); margin-bottom: 8px; font-weight: 600; }
-.short-story { font-size: 13.5px; line-height: 1.6; color: #555; }
-.date-badge { display: inline-block; background: #fcf1f3; color: var(--rose-gold-dark); padding: 7px 16px; border-radius: 25px; font-weight: 500; font-size: 13.5px; border: 1px solid var(--rose-gold); margin-bottom: 12px; }
-.guest-box { font-size: 13.5px; font-weight: 500; color: #333; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(183, 110, 121, 0.3); }
-.open-hint { font-size: 12px; color: var(--rose-gold); margin-top: 12px; font-style: italic; animation: bounceHint 1.5s infinite; }
-
-@keyframes bounceHint {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(5px); }
+.char-boy { left: 5%; }
+.char-girl { right: 5%; }
+.char-couple {
+    position: relative;
+    width: 80%;
+    height: 400px;
+    margin: 0 auto 20px auto;
+    background-position: center bottom;
 }
 
-.btn-action { background: linear-gradient(135deg, var(--rose-gold), var(--rose-gold-dark)); color: #fff; border: none; padding: 12px 30px; font-size: 15px; border-radius: 30px; cursor: pointer; margin-top: 10px; font-family: inherit; box-shadow: 0 5px 15px rgba(183, 110, 121, 0.4); pointer-events: auto; }
+/* GAMBAR KARAKTER PER BABAK */
+.boy-1 { background-image: url('images/boy-1-kampus.png'); }
+.girl-1 { background-image: url('images/girl-1-kampus.png'); }
+.boy-2 { background-image: url('images/boy-2-kimia.png'); }
+.girl-2 { background-image: url('images/girl-2-industri.png'); }
+.boy-3 { background-image: url('images/boy-3-gitar.png'); }
+.girl-3 { background-image: url('images/girl-3-gitar.png'); }
+.boy-4 { background-image: url('images/boy-4-hiking.png'); }
+.girl-4 { background-image: url('images/girl-4-hiking.png'); }
+.boy-5 { background-image: url('images/boy-5-lamaran.png'); }
+.girl-5 { background-image: url('images/girl-5-lamaran.png'); }
+.couple-wedding { background-image: url('images/couple-wedding.png'); }
 
-.music-controller {
-    position: fixed; bottom: 20px; right: 20px; background: rgba(255, 255, 255, 0.9);
-    border: 1px solid var(--rose-gold); padding: 10px 18px; border-radius: 30px;
-    display: flex; align-items: center; gap: 8px; cursor: pointer;
-    box-shadow: 0 5px 20px rgba(183, 110, 121, 0.3); z-index: 999; transition: all 0.3s ease;
+/* FITUR LAIN (COUNTDOWN, BANK, QR) */
+.countdown-box {
+    display: flex;
+    justify-content: space-around;
+    background: #fdfaf6;
+    border: 1px solid #e0c8c0;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 15px;
 }
-.music-controller:hover { transform: scale(1.05); background: #ffffff; }
-.music-icon { font-size: 16px; animation: spinSlow 4s linear infinite; }
-.music-text { font-size: 12px; font-weight: 500; color: var(--rose-gold-dark); }
-
-@keyframes spinSlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-#sparkle-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; }
-.sparkle {
-    position: absolute; width: 8px; height: 8px;
-    background: radial-gradient(circle, #fff 0%, var(--rose-gold) 70%, transparent 100%);
-    border-radius: 50%; pointer-events: none; animation: sparkleAnim 0.8s linear forwards;
-    box-shadow: 0 0 8px var(--rose-gold);
+.countdown-box span {
+    display: block;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #b76e79;
 }
-@keyframes sparkleAnim {
-    0% { transform: translate(0, 0) scale(1); opacity: 1; }
-    100% { transform: translate(var(--rand-x), var(--rand-y)) scale(0); opacity: 0; }
+.bank-box {
+    background: #fcf4f1;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 15px;
+    border: 1px dashed #b76e79;
+}
+.qr-code {
+    border: 3px solid #b76e79;
+    border-radius: 10px;
+    padding: 5px;
+    background: white;
+    margin-top: 10px;
+}
+
+/* Responsif untuk Layar Besar */
+@media (min-width: 768px) {
+    .char-boy { left: 20%; }
+    .char-girl { right: 20%; }
 }
