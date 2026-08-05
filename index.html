@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding of Syarifah & Ihsan</title>
+    <title>When Time Chose Us - Syarifah & Ihsan</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,47 +12,82 @@
 <div class="viewport">
     <div class="scene" id="scene">
         
+        <!-- BABAK 0: SAMPUL -->
         <div class="layer" id="babak-sampul">
-            <div class="story-card">
-                <p class="tagline">"Kisah tentang kebersamaan, komitmen, dan takdir yang menyatukan."</p>
-                <div style="font-size: 13px; color: #888;">The Wedding of</div>
-                <div class="names">Syarifah & Ihsan</div>
-                <p id="guest-box" style="font-size: 14px; margin: 15px 0; color: #555;">Kepada Yth. Tamu Undangan</p>
-                <div class="scroll-hint">Gulir perlahan ke bawah untuk membuka kisah ↓</div>
+            <div class="story-card hero-card">
+                <div class="leaf-ornament top-left">🌿</div>
+                <div class="leaf-ornament bottom-right">🌿</div>
+                
+                <h3 class="sub-title">When Time Chose Us</h3>
+                <h1 class="names">Syarifah & Ihsan</h1>
+                <p class="tagline">"Waktu akan mempertemukan pada waktunya. Kita bertumbuh masing-masing terlebih dahulu, lalu dipertemukan di waktu yang tepat."</p>
+                
+                <div class="date-badge">20 Desember 2026</div>
+                
+                <p id="guest-box" class="guest-box">Kepada Yth. Tamu Undangan</p>
+                <div class="scroll-hint">Mulai Perjalanan ↓</div>
             </div>
         </div>
 
-        <div class="layer" id="babak-kisah">
+        <!-- BABAK 1: LAB KIMIA -->
+        <div class="layer" id="babak-1">
             <div class="story-card">
-                <div class="chapter-title">Babak Pertama</div>
-                <h2>Awal Perjalanan</h2>
-                <p>Setiap kisah indah memiliki permulaannya sendiri. Pertemuan demi pertemuan menumbuhkan rasa nyaman, pengertian, dan keyakinan untuk melangkah bersama di jalan-Nya.</p>
+                <div class="chapter-title">Bab I: Benih yang Belum Tumbuh</div>
+                <div class="animation-stage">
+                    <!-- Placeholder Foto Kartun Latar Putih -->
+                    <div class="cartoon-boy move-closer"></div>
+                    <div class="cartoon-girl stay-away"></div>
+                </div>
+                <p class="short-story">Di antara tabung reaksi dan aroma laboratorium kimia. Sebuah langkah mendekat yang awalnya belum berbalas, menyisakan ruang bagi kita untuk sekadar saling mendoakan dalam diam.</p>
             </div>
         </div>
 
-        <div class="layer" id="babak-perjalanan">
-            <div class="story-card">
-                <div class="chapter-title">Babak Kedua</div>
-                <h2>Merajut Harapan</h2>
-                <p>Waktu demi waktu terlewati dengan dukungan dan doa. Suka dan duka dihadapi bersama, memperkuat ikatan hati di antara kami berdua.</p>
+        <!-- BABAK 2: PERPISAHAN -->
+        <div class="layer" id="babak-2">
+            <div class="story-card split-screen">
+                <div class="chapter-title">Bab II: Lorong Waktu dan Jarak</div>
+                <div class="animation-stage split-stage">
+                    <div class="cartoon-boy side-left"></div>
+                    <div class="divider-line"></div>
+                    <div class="cartoon-girl side-right"></div>
+                </div>
+                <p class="short-story">Waktu membawa kita ke arah yang berbeda. Tiga tahun berlalu tanpa sapa, membiarkan kita bertumbuh dan belajar di jalan masing-masing dalam keheningan.</p>
             </div>
         </div>
 
-        <div class="layer" id="babak-waktu">
+        <!-- BABAK 3: ALAM & MELODI -->
+        <div class="layer" id="babak-3">
             <div class="story-card">
-                <div class="chapter-title">Babak Ketiga</div>
-                <h2>Menuju Hari Bahagia</h2>
-                <p>Dengan memohon rahmat dan ridha Allah SWT, kami bersiap menyambut babak baru dalam ikatan suci pernikahan.</p>
+                <div class="chapter-title">Bab III: Pertemuan di Persimpangan Takdir</div>
+                <div class="animation-stage nature-stage">
+                    <div class="cartoon-couple hiking-anim"></div>
+                </div>
+                <p class="short-story">Sebuah utas tak terduga kembali tersambung melalui alunan melodi. Membawa langkah kita menyusuri air terjun dan mendaki bukit bersama di bawah langit terbuka.</p>
+            </div>
+        </div>
+
+        <!-- BABAK 4: LAMARAN -->
+        <div class="layer" id="babak-4">
+            <div class="story-card">
+                <div class="chapter-title">Bab IV: Ikrar di Bawah Restu Semesta</div>
+                <div class="animation-stage warm-stage">
+                    <div class="cartoon-couple ring-anim"></div>
+                </div>
+                <p class="short-story">Jalan panjang ini akhirnya menemukan muaranya. Diiringi restu dan senyum hangat kedua keluarga, ikatan ini mulai dirajut menuju keseriusan.</p>
+            </div>
+        </div>
+
+        <!-- BABAK 5: RSVP -->
+        <div class="layer" id="babak-5">
+            <div class="story-card rsvp-card">
+                <div class="leaf-ornament top-left">🌿</div>
+                <div class="leaf-ornament bottom-right">🌿</div>
+                <div class="chapter-title">Bab V: Lembaran Baru Kita</div>
+                <h1 class="names" style="font-size: 24px;">Syarifah & Ihsan</h1>
+                <p class="short-story">Dengan memohon rahmat Allah SWT, kami menantikan kehadiran Anda pada hari bahagia kami.</p>
                 <div class="date-badge">Minggu, 20 Desember 2026</div>
-            </div>
-        </div>
-
-        <div class="layer" id="babak-nikah">
-            <div class="story-card">
-                <div class="chapter-title">Puncak Perjalanan</div>
-                <h2>Undangan & Doa Restu</h2>
-                <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
-                <button class="btn-action" onclick="alert('Terima kasih atas konfirmasi dan doa restunya!')">Konfirmasi Kehadiran (RSVP)</button>
+                <p class="short-story location-text">Gedung Resepsi Pernikahan<br>Pukul 09.00 WIB - Selesai</p>
+                <button class="btn-action" onclick="alert('Terima kasih atas konfirmasi dan doa restunya!')">Konfirmasi Kehadiran</button>
             </div>
         </div>
 
