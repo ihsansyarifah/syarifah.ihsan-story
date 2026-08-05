@@ -45,3 +45,28 @@ function toggleMusic() {
     }
     isPlaying = !isPlaying;
 }
+
+// 4. Efek Jejak Cahaya Kursor Dongeng
+document.addEventListener("mousemove", function (e) {
+    if (Math.random() > 0.3) return;
+
+    const sparkleContainer = document.getElementById("sparkle-container");
+    if (!sparkleContainer) return;
+
+    const sparkle = document.createElement("div");
+    sparkle.classList.add("sparkle");
+
+    sparkle.style.left = `${e.clientX}px`;
+    sparkle.style.top = `${e.clientY}px`;
+
+    const randX = (Math.random() - 0.5) * 60 + "px";
+    const randY = (Math.random() - 0.5) * 60 + "px";
+    sparkle.style.setProperty("--rand-x", randX);
+    sparkle.style.setProperty("--rand-y", randY);
+
+    sparkleContainer.appendChild(sparkle);
+
+    setTimeout(() => {
+        sparkle.remove();
+    }, 800);
+});
