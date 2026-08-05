@@ -3,15 +3,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const bookCover = document.getElementById("bookCover");
     const totalHeight = document.body.offsetHeight - window.innerHeight;
 
-    // 1. Efek 3D Scroll & Animasi Buku Terbuka
     window.addEventListener("scroll", function () {
         const scrollTop = window.pageYOffset;
         const scrollProgress = scrollTop / totalHeight;
-        const zTranslate = scrollProgress * -10000;
+        const zTranslate = scrollProgress * -9000;
         
         scene.style.transform = `translateZ(${zTranslate}px)`;
 
-        // Efek buku terbuka / mengecil saat mulai digulir
         if (scrollTop > 50) {
             bookCover.classList.add("open-animation");
         } else {
@@ -19,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 2. Fitur Otomatis Nama Tamu Undangan dari URL
     const urlParams = new URLSearchParams(window.location.search);
     const guestName = urlParams.get("to");
     
@@ -29,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// 3. Fungsi Kontrol Musik Latar
 const bgMusic = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicBtn");
 const musicIcon = document.getElementById("musicIcon");
@@ -41,12 +37,10 @@ function toggleMusic() {
         bgMusic.pause();
         musicIcon.textContent = "▶️";
         musicText.textContent = "Putar Musik";
-        musicBtn.style.animation = "none";
     } else {
         bgMusic.play().then(() => {
             musicIcon.textContent = "🎵";
             musicText.textContent = "Musik Diputar";
-            musicBtn.style.animation = "pulse 2s infinite";
         }).catch(error => {
             console.log("Autoplay dicegah browser:", error);
         });
@@ -54,7 +48,6 @@ function toggleMusic() {
     isPlaying = !isPlaying;
 }
 
-// 4. Efek Jejak Cahaya Kursor Dongeng
 document.addEventListener("mousemove", function (e) {
     if (Math.random() > 0.3) return;
 
