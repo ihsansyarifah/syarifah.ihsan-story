@@ -3,140 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Syarifah & Ihsan</title>
-    <!-- Google Fonts untuk kesan elegan -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #fdfbf7;
-            color: #4a4a4a;
-            text-align: center;
-            overflow-x: hidden;
-        }
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-        }
-        /* Cover Depan */
-        #cover {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #fce7ec, #f4d0d9);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-            transition: transform 0.8s ease-in-out;
-            padding: 20px;
-        }
-        #cover.hidden {
-            transform: translateY(-100%);
-        }
-        .cover-content h3 {
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            color: #8c5862;
-            margin-bottom: 10px;
-        }
-        .cover-content h1 {
-            font-size: 2.5rem;
-            color: #59313b;
-            margin-bottom: 20px;
-        }
-        .btn-buka {
-            background-color: #b76e79;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1rem;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(183, 110, 121, 0.4);
-            transition: 0.3s;
-        }
-        .btn-buka:hover {
-            background-color: #9c5761;
-            transform: scale(1.05);
-        }
-
-        /* Konten Utama Undangan */
-        .main-content {
-            padding: 60px 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .couple-section {
-            margin-bottom: 50px;
-        }
-        .couple-section h2 {
-            font-size: 2.2rem;
-            color: #b76e79;
-            margin-bottom: 15px;
-        }
-        .couple-section p {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #666;
-        }
-        .event-card {
-            background: #ffffff;
-            border: 1px solid #f0d5dc;
-            border-radius: 15px;
-            padding: 30px 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
-            margin-top: 30px;
-        }
-        .event-card h3 {
-            color: #8c5862;
-            margin-bottom: 10px;
-        }
-    </style>
+    <title>The Wedding of Syarifah & Ihsan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- HALAMAN COVER / SAMPUL -->
-    <div id="cover">
-        <div class="cover-content">
-            <h3>THE WEDDING OF</h3>
-            <h1>Syarifah & Ihsan</h1>
-            <p style="margin-bottom: 25px; color: #7a525b;">Kepada Yth. Bapak/Ibu/Saudara/i</p>
-            <button class="btn-buka" onclick="bukaUndangan()">Buka Undangan</button>
+<div class="viewport">
+    <div class="scene" id="scene">
+        
+        <div class="layer" id="babak-sampul">
+            <div class="story-card">
+                <p class="tagline">"Kisah tentang kebersamaan, komitmen, dan takdir yang menyatukan."</p>
+                <div style="font-size: 13px; color: #888;">The Wedding of</div>
+                <div class="names">Syarifah & Ihsan</div>
+                <p id="guest-box" style="font-size: 14px; margin: 15px 0; color: #555;">Kepada Yth. Tamu Undangan</p>
+                <div class="scroll-hint">Gulir perlahan ke bawah untuk membuka kisah ↓</div>
+            </div>
         </div>
+
+        <div class="layer" id="babak-kisah">
+            <div class="story-card">
+                <div class="chapter-title">Babak Pertama</div>
+                <h2>Awal Perjalanan</h2>
+                <p>Setiap kisah indah memiliki permulaannya sendiri. Pertemuan demi pertemuan menumbuhkan rasa nyaman, pengertian, dan keyakinan untuk melangkah bersama di jalan-Nya.</p>
+            </div>
+        </div>
+
+        <div class="layer" id="babak-perjalanan">
+            <div class="story-card">
+                <div class="chapter-title">Babak Kedua</div>
+                <h2>Merajut Harapan</h2>
+                <p>Waktu demi waktu terlewati dengan dukungan dan doa. Suka dan duka dihadapi bersama, memperkuat ikatan hati di antara kami berdua.</p>
+            </div>
+        </div>
+
+        <div class="layer" id="babak-waktu">
+            <div class="story-card">
+                <div class="chapter-title">Babak Ketiga</div>
+                <h2>Menuju Hari Bahagia</h2>
+                <p>Dengan memohon rahmat dan ridha Allah SWT, kami bersiap menyambut babak baru dalam ikatan suci pernikahan.</p>
+                <div class="date-badge">Minggu, 20 Desember 2026</div>
+            </div>
+        </div>
+
+        <div class="layer" id="babak-nikah">
+            <div class="story-card">
+                <div class="chapter-title">Puncak Perjalanan</div>
+                <h2>Undangan & Doa Restu</h2>
+                <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
+                <button class="btn-action" onclick="alert('Terima kasih atas konfirmasi dan doa restunya!')">Konfirmasi Kehadiran (RSVP)</button>
+            </div>
+        </div>
+
     </div>
+</div>
 
-    <!-- ISI UTAMA UNDANGAN -->
-    <div class="main-content">
-        <div class="couple-section">
-            <p style="font-style: italic; margin-bottom: 10px;">Assalamu'alaikum Wr. Wb.</p>
-            <p>Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:</p>
-            
-            <h2 style="margin-top: 30px;">Syarifah & Ihsan</h2>
-            <p>Putra & Putri tercinta</p>
-        </div>
+<script src="script.js"></script>
 
-        <div class="event-card">
-            <h3>Akad Nikah & Resepsi</h3>
-            <p style="margin: 15px 0; font-weight: 500;">📅 Minggu, 20 Desember 2026</p>
-            <p style="margin: 15px 0; font-weight: 500;">📍 Gedung Serbaguna, Jakarta</p>
-            <p style="font-size: 0.9rem; color: #777;">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
-        </div>
-    </div>
-
-    <script>
-        function bukaUndangan() {
-            const cover = document.getElementById('cover');
-            cover.classList.add('hidden');
-        }
-    </script>
 </body>
 </html>
