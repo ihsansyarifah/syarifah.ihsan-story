@@ -3,12 +3,13 @@
     --rose-gold-light: #fdf5f6;
     --rose-gold-dark: #8c4a54;
     --text-color: #4a4a4a;
+    --forest-green: #2c4a3e;
 }
 
 body {
     margin: 0; padding: 0;
     height: 700vh;
-    background: #1a1a1a;
+    background: #152922; /* Nuansa gelap hutan */
     font-family: 'Plus Jakarta Sans', sans-serif;
     overflow-x: hidden;
     color: var(--text-color);
@@ -31,36 +32,59 @@ body {
     background-repeat: no-repeat;
 }
 
-/* Background Per Babak */
+/* =======================================
+   SAMPUL: HUTAN DAUN & BUKU DONGENG
+======================================== */
 #babak-sampul { 
     transform: translateZ(0px); 
-    background: radial-gradient(circle at center, #ffffff, #fdf1f3);
+    background: linear-gradient(135deg, #1b382d 0%, #0f211a 100%);
 }
 
-#babak-1 { 
-    transform: translateZ(-2000px); 
-    background-color: #f7f9fa;
+.forest-canopy {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(circle, rgba(183, 110, 121, 0.15) 10%, transparent 20%);
+    background-size: 40px 40px;
+    opacity: 0.6;
+    pointer-events: none;
 }
 
-#babak-2 { 
-    transform: translateZ(-4000px); 
-    background-color: #f4f4f4;
+/* Tampilan Buku Dongeng di Tengah */
+.fairy-book {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 90%;
+    max-width: 480px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    border: 3px solid var(--rose-gold);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(183, 110, 121, 0.2);
+    z-index: 10;
+    transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
-#babak-3 { 
-    transform: translateZ(-6000px); 
-    background-color: #f0f7f4;
+.book-cover-inner {
+    padding: 35px 30px;
+    text-align: center;
 }
 
-#babak-4 { 
-    transform: translateZ(-8000px); 
-    background-color: #fef5f0;
+/* Efek saat buku dibuka (diset lewat Javascript saat digulir) */
+.fairy-book.open-animation {
+    transform: translate(-50%, -150%) scale(0.5);
+    opacity: 0;
+    pointer-events: none;
 }
 
-#babak-5 { 
-    transform: translateZ(-10000px); 
-    background: radial-gradient(circle at center, #ffffff, #fdf1f3);
-}
+/* =======================================
+   BACKGROUND BABAK SELANJUTNYA
+======================================== */
+#babak-1 { transform: translateZ(-2000px); background-color: #f7f9fa; }
+#babak-2 { transform: translateZ(-4000px); background-color: #f4f4f4; }
+#babak-3 { transform: translateZ(-6000px); background-color: #f0f7f4; }
+#babak-4 { transform: translateZ(-8000px); background-color: #fef5f0; }
+#babak-5 { transform: translateZ(-10000px); background: radial-gradient(circle at center, #ffffff, #fdf1f3); }
 
 /* Kartu Cerita (Posisi Asimetris Dinamis) */
 .story-card {
@@ -95,12 +119,18 @@ body {
 .top-left { top: 15px; left: 15px; transform: rotate(-45deg); }
 .bottom-right { bottom: 15px; right: 15px; transform: rotate(135deg); }
 .sub-title { font-family: 'Playfair Display', serif; font-style: italic; color: var(--rose-gold); font-size: 18px; margin-bottom: 5px; }
-.names { font-family: 'Playfair Display', serif; color: var(--rose-gold-dark); font-size: 36px; margin: 5px 0 15px 0; font-weight: 600; }
-.tagline { font-size: 13px; font-style: italic; color: #777; margin-bottom: 25px; line-height: 1.6; }
+.names { font-family: 'Playfair Display', serif; color: var(--rose-gold-dark); font-size: 34px; margin: 5px 0 15px 0; font-weight: 600; }
+.tagline { font-size: 13px; font-style: italic; color: #777; margin-bottom: 20px; line-height: 1.6; }
 .chapter-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--rose-gold-dark); margin-bottom: 10px; font-weight: 600; }
 .short-story { font-size: 14px; line-height: 1.7; color: #555; }
 .date-badge { display: inline-block; background: #fcf1f3; color: var(--rose-gold-dark); padding: 8px 18px; border-radius: 25px; font-weight: 500; font-size: 14px; border: 1px solid var(--rose-gold); margin-bottom: 15px; }
 .guest-box { font-size: 14px; font-weight: 500; color: #333; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(183, 110, 121, 0.3); }
+.open-hint { font-size: 12px; color: var(--rose-gold); margin-top: 15px; font-style: italic; animation: bounceHint 1.5s infinite; }
+
+@keyframes bounceHint {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+}
 
 /* Animasi Kartun Utama */
 .full-screen-stage {

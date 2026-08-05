@@ -1,14 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
     const scene = document.getElementById("scene");
+    const bookCover = document.getElementById("bookCover");
     const totalHeight = document.body.offsetHeight - window.innerHeight;
 
-    // 1. Efek 3D Scroll
+    // 1. Efek 3D Scroll & Animasi Buku Terbuka
     window.addEventListener("scroll", function () {
         const scrollTop = window.pageYOffset;
         const scrollProgress = scrollTop / totalHeight;
         const zTranslate = scrollProgress * -10000;
         
         scene.style.transform = `translateZ(${zTranslate}px)`;
+
+        // Efek buku terbuka / mengecil saat mulai digulir
+        if (scrollTop > 50) {
+            bookCover.classList.add("open-animation");
+        } else {
+            bookCover.classList.remove("open-animation");
+        }
     });
 
     // 2. Fitur Otomatis Nama Tamu Undangan dari URL
