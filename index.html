@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Alin & Hari</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rose-gold: #b76e79;
+            --rose-gold-light: #fdf5f6;
+            --rose-gold-dark: #8c4a54;
+            --text-color: #4a4a4a;
+            --gold-accent: #d4af37;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 600vh; /* Panjang scroll untuk 5 babak */
+            background-color: var(--rose-gold-light);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            color: var(--text-color);
+        }
+
+        /* Lensa kamera 3D */
+        .viewport {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            perspective: 1200px;
+            overflow: hidden;
+        }
+
+        .scene {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: transform 0.08s linear;
+        }
+
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Posisi Kedalaman Z-Axis Setiap Babak */
+        #babak-sampul { transform: translateZ(0px); }
+        #babak-lab { transform: translateZ(-1800px); }
+        #babak-jeda { transform: translateZ(-3600px); }
+        #babak-alam { transform: translateZ(-5400px); }
+        #babak-nikah { transform: translateZ(-7200px); }
+
+        /* Desain Kartu Buku / Cerita */
+        .story-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            padding: 40px 35px;
+            border-radius: 16px;
+            border: 1px solid rgba(183, 110, 121, 0.3);
+            box-shadow: 0 20px 40px rgba(183, 110, 121, 0.15);
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+        }
+
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            border: 1px dashed var(--rose-gold);
+            border-radius: 12px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--rose-gold-dark);
+            margin-top: 0;
+        }
+
+        .names {
+            font-size: 32px;
+            font-family: 'Playfair Display', serif;
+            color: var(--rose-gold-dark);
+            margin: 15px 0;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .tagline {
+            font-style: italic;
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .chapter-title {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--rose-gold);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Tombol Elegan */
+        .btn-action {
+            background: linear-gradient(135deg, #b76e79, #8c4a54);
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            font-size: 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(183, 110, 121, 0.4);
+            transition: all 0.3s ease;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(183, 110, 121, 0.6);
+        }
+
+        .scroll-hint {
+            margin-top: 15px;
+            font-size: 13px;
+            color: var(--rose-gold);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="viewport">
+    <div class="scene" id="scene">
+        
+        <div class="layer" id="babak-sampul">
+            <div class="story-card">
+                <p class="tagline">"Kisah tentang waktu, kesabaran, dan takdir yang mempertemukan kembali."</p>
+                <div style="font-size: 13px; color: #888;">The Wedding of</div>
+                <div class="names">Alin & Hari</div>
+                <p id="guest-box" style="font-size: 14px; margin: 15px 0;">Kepada Yth. Tamu Undangan</p>
+                <div class="scroll-hint">Gulir perlahan ke bawah untuk membuka kisah ↓</div>
+            </div>
+        </div>
+
+        <div class="layer" id="babak-lab">
+            <div class="story-card">
+                <div class="chapter-title">Babak Pertama</div>
+                <h2>Laboratorium Analis Kimia</h2>
+                <p>Semuanya bermula dari ruang lab Analis Kimia. Ada ketertarikan sejak pandangan pertama dan usaha keras untuk mendekat, meski tiga tahun penantian itu harus dijawab dengan pertemanan.</p>
+            </div>
+        </div>
+
+        <div class="layer" id="babak-jeda">
+            <div class="story-card">
+                <div class="chapter-title">Babak Kedua</div>
+                <h2>Persimpangan Jalan</h2>
+                <p>Kelulusan membawa kami ke arah berbeda—Teknik Kimia dan Teknik Industri. Tiga tahun penuh tanpa komunikasi, berjalan di atas takdir masing-masing dalam keheningan.</p>
+            </div>
+        </div>
+
+        <div class="layer" id="babak-alam">
+            <div class="story-card">
+                <div class="chapter-title">Babak Ketiga</div>
+                <h2>Melodi & Alam</h2>
+                <p>Sebuah momen mencari gitar menyambung kembali benang yang putus. Dari melodi, gemercik air terjun, hingga langkah pertama mendaki bukit bersama membuka kembali pintu hati.</p>
+            </div>
+        </div>
+
+        <div class="layer" id="babak-nikah">
+            <div class="story-card">
+                <div class="chapter-title">Puncak Perjalanan</div>
+                <h2>Menuju Halal</h2>
+                <p>Pendakian bukit itu menuntun kami pada puncak keyakinan. Dengan memohon ridha Allah SWT, kami mengundang Anda di hari bahagia kami.</p>
+                <button class="btn-action" onclick="alert('Form RSVP akan aktif di sini!')">Konfirmasi Kehadiran (RSVP)</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // Menangkap nama tamu dari URL (contoh: ?kepada=Budi)
+    const urlParams = new URLSearchParams(window.location.search);
+    const namaTamu = urlParams.get('kepada');
+    if (namaTamu) {
+        document.getElementById('guest-box').innerHTML = `Kepada Yth.<br><b>${namaTamu}</b>`;
+    }
+
+    // Efek pergerakan kamera 3D berdasarkan guliran layar (scroll)
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+        const scene = document.getElementById('scene');
+        scene.style.transform = `translateZ(${scrollPosition * 1.3}px)`;
+    });
+</script>
+
+</body>
+</html>
