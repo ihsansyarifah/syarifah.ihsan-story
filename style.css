@@ -8,8 +8,7 @@
 body {
     margin: 0; padding: 0;
     height: 700vh;
-    /* Latar belakang diatur lebih natural untuk menyatu dengan animasi */
-    background: radial-gradient(circle at center, #ffffff, #fdf1f3);
+    background: #1a1a1a;
     font-family: 'Plus Jakarta Sans', sans-serif;
     overflow-x: hidden;
     color: var(--text-color);
@@ -27,42 +26,63 @@ body {
 
 .layer {
     position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    /* Dihapus display:flex agar kita bisa mengatur koordinat posisi dengan bebas */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-/* Kedalaman 3D */
-#babak-sampul { transform: translateZ(0px); }
-#babak-1 { transform: translateZ(-2000px); }
-#babak-2 { transform: translateZ(-4000px); }
-#babak-3 { transform: translateZ(-6000px); }
-#babak-4 { transform: translateZ(-8000px); }
-#babak-5 { transform: translateZ(-10000px); }
+/* Background Per Babak (Slot file gambar background opsional nanti) */
+#babak-sampul { 
+    transform: translateZ(0px); 
+    background: radial-gradient(circle at center, #ffffff, #fdf1f3);
+}
 
-/* =======================================
-   KARTU CERITA (POSISI DINAMIS)
-======================================== */
+#babak-1 { 
+    transform: translateZ(-2000px); 
+    background-color: #f7f9fa;
+}
+
+#babak-2 { 
+    transform: translateZ(-4000px); 
+    background-color: #f4f4f4;
+}
+
+#babak-3 { 
+    transform: translateZ(-6000px); 
+    background-color: #f0f7f4;
+}
+
+#babak-4 { 
+    transform: translateZ(-8000px); 
+    background-color: #fef5f0;
+}
+
+#babak-5 { 
+    transform: translateZ(-10000px); 
+    background: radial-gradient(circle at center, #ffffff, #fdf1f3);
+}
+
+/* Kartu Cerita (Posisi Asimetris Dinamis) */
 .story-card {
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(12px);
     padding: 30px 25px;
     border-radius: 20px;
     border: 1px solid rgba(183, 110, 121, 0.2);
     box-shadow: 0 15px 35px rgba(183, 110, 121, 0.15);
-    max-width: 380px; /* Dibuat sedikit lebih ramping agar tak menutupi animasi */
+    max-width: 380px;
     width: 85%;
-    position: absolute; /* Kunci agar bisa ditaruh di berbagai sudut */
+    position: absolute;
     z-index: 10;
     text-align: center;
 }
 
-/* Koordinat Asimetris agar saat di-scroll 3D terasa melayang dari arah berbeda */
 .card-center { top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 450px; }
 .card-top-left { top: 15%; left: 8%; }
 .card-bottom-right { bottom: 15%; right: 8%; }
 .card-bottom-center { bottom: 10%; left: 50%; transform: translateX(-50%); }
 .card-top-center { top: 10%; left: 50%; transform: translateX(-50%); }
 
-/* Responsif untuk HP agar tidak keluar layar */
 @media (max-width: 768px) {
     .card-top-left, .card-bottom-right {
         left: 50%; right: auto;
@@ -70,7 +90,7 @@ body {
     }
 }
 
-/* Tipografi */
+/* Tipografi & Ornamen */
 .leaf-ornament { position: absolute; font-size: 24px; opacity: 0.6; }
 .top-left { top: 15px; left: 15px; transform: rotate(-45deg); }
 .bottom-right { bottom: 15px; right: 15px; transform: rotate(135deg); }
@@ -82,32 +102,27 @@ body {
 .date-badge { display: inline-block; background: #fcf1f3; color: var(--rose-gold-dark); padding: 8px 18px; border-radius: 25px; font-weight: 500; font-size: 14px; border: 1px solid var(--rose-gold); margin-bottom: 15px; }
 .guest-box { font-size: 14px; font-weight: 500; color: #333; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(183, 110, 121, 0.3); }
 
-/* =======================================
-   ANIMASI KARTUN (HIGHLIGHT UTAMA)
-======================================== */
+/* Animasi Kartun Utama */
 .full-screen-stage {
     position: absolute; top: 0; left: 0; right: 0; bottom: 0;
     width: 100%; height: 100%;
     z-index: 1; pointer-events: none;
 }
 
-/* Base Foto Kartun - Ukuran Raksasa & Menyatu Latar */
 .cartoon-boy, .cartoon-girl, .cartoon-couple {
-    width: 45vh;  /* Sangat besar agar menjadi highlight */
+    width: 45vh;  
     height: 45vh;
     max-width: 350px;
     max-height: 350px;
-    background-color: #fff; /* Warna dasar stiker */
+    background-color: #fff; 
     position: absolute;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    /* INI KUNCINYA: Otomatis menghapus latar putih stikermu! */
     mix-blend-mode: multiply; 
     opacity: 0.95;
 }
 
-/* Animasi Babak 1 (Kanan Bawah): Cowok mendekat dari luar layar */
 .cartoon-boy.move-closer-right { bottom: 5%; right: 5%; animation: approachRight 5s infinite alternate ease-in-out; }
 .cartoon-girl.stay-right { bottom: 10%; right: 35%; opacity: 0.8; }
 
@@ -116,18 +131,15 @@ body {
     100% { transform: translateX(-30px) scale(1); }
 }
 
-/* Animasi Babak 2 (Kiri): Terpisah Atas & Bawah */
 .cartoon-boy.side-top-left { top: 15%; left: 10%; animation: floatSlow 4s infinite ease-in-out; }
 .cartoon-girl.side-bottom-left { bottom: 15%; left: 5%; animation: floatSlow 4.5s infinite ease-in-out reverse; }
 
-/* Animasi Babak 3 (Atas): Melayang di atas layar */
 .cartoon-couple.hiking-anim-top {
     width: 55vh; height: 55vh; max-width: 450px; max-height: 450px;
     top: 5%; left: 50%; transform: translateX(-50%);
     animation: floatSlow 3s infinite ease-in-out;
 }
 
-/* Animasi Babak 4 (Bawah): Detak jantung cincin di bawah layar */
 .cartoon-couple.ring-anim-bottom {
     width: 55vh; height: 55vh; max-width: 450px; max-height: 450px;
     bottom: 5%; left: 50%; transform: translateX(-50%);
@@ -144,3 +156,42 @@ body {
 }
 
 .btn-action { background: linear-gradient(135deg, var(--rose-gold), var(--rose-gold-dark)); color: #fff; border: none; padding: 12px 30px; font-size: 15px; border-radius: 30px; cursor: pointer; margin-top: 10px; font-family: inherit; box-shadow: 0 5px 15px rgba(183, 110, 121, 0.4); pointer-events: auto; }
+
+/* Kontrol Musik Melayang */
+.music-controller {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--rose-gold);
+    padding: 10px 18px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(183, 110, 121, 0.3);
+    z-index: 999;
+    transition: all 0.3s ease;
+}
+
+.music-controller:hover {
+    transform: scale(1.05);
+    background: #ffffff;
+}
+
+.music-icon {
+    font-size: 16px;
+    animation: spinSlow 4s linear infinite;
+}
+
+.music-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--rose-gold-dark);
+}
+
+@keyframes spinSlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

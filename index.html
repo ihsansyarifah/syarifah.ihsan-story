@@ -26,10 +26,9 @@
             </div>
         </div>
 
-        <!-- HALAMAN 1: LAB KIMIA (Cerita dari Kiri Atas, Animasi Kanan Bawah) -->
+        <!-- HALAMAN 1: LAB KIMIA -->
         <div class="layer" id="babak-1">
             <div class="full-screen-stage">
-                <!-- Highlight Animasi -->
                 <div class="cartoon-boy move-closer-right"></div>
                 <div class="cartoon-girl stay-right"></div>
             </div>
@@ -40,10 +39,9 @@
             </div>
         </div>
 
-        <!-- HALAMAN 2: PERPISAHAN (Cerita dari Kanan Bawah, Animasi Kiri) -->
+        <!-- HALAMAN 2: PERPISAHAN -->
         <div class="layer" id="babak-2">
             <div class="full-screen-stage">
-                <!-- Highlight Animasi -->
                 <div class="cartoon-boy side-top-left"></div>
                 <div class="cartoon-girl side-bottom-left"></div>
             </div>
@@ -54,10 +52,9 @@
             </div>
         </div>
 
-        <!-- HALAMAN 3: ALAM & MELODI (Cerita dari Bawah Tengah, Animasi Atas) -->
+        <!-- HALAMAN 3: ALAM & MELODI -->
         <div class="layer" id="babak-3">
             <div class="full-screen-stage">
-                <!-- Highlight Animasi -->
                 <div class="cartoon-couple hiking-anim-top"></div>
             </div>
 
@@ -67,10 +64,9 @@
             </div>
         </div>
 
-        <!-- HALAMAN 4: LAMARAN (Cerita dari Atas Tengah, Animasi Bawah) -->
+        <!-- HALAMAN 4: LAMARAN -->
         <div class="layer" id="babak-4">
             <div class="full-screen-stage">
-                <!-- Highlight Animasi -->
                 <div class="cartoon-couple ring-anim-bottom"></div>
             </div>
 
@@ -80,7 +76,7 @@
             </div>
         </div>
 
-        <!-- HALAMAN 5: RSVP (Tengah) -->
+        <!-- HALAMAN 5: RSVP -->
         <div class="layer" id="babak-5">
             <div class="story-card card-center rsvp-card">
                 <div class="leaf-ornament top-left">🌿</div>
@@ -96,6 +92,16 @@
 
     </div>
 </div>
+
+<!-- Tombol & Pemutar Musik Latar -->
+<div class="music-controller" id="musicBtn" onclick="toggleMusic()">
+    <span class="music-icon" id="musicIcon">🎵</span>
+    <span class="music-text" id="musicText">Putar Musik</span>
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="background-music.mp3" type="audio/mpeg">
+</audio>
 
 <script src="script.js"></script>
 </body>
